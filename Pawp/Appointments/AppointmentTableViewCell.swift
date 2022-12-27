@@ -332,7 +332,7 @@ class AppointmentTableViewCell: UITableViewCell {
     
     private func appointmentTimeTextFor(date: Date)-> String {
         let formatter = DateFormatter()
-        formatter.dateFormat = "MMM, d @ h:mm a"
+        formatter.dateFormat = "E, MMM d @ h:mm a"
         return formatter.string(from: date)
     }
     
