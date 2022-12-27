@@ -17,6 +17,7 @@ class AppointmentsDataSource {
         return dateFormatter
     }()
     
+    // We could have another state here to differentiate local state changes
     enum FetchState {
         case uninitiated
         case fetching
@@ -39,6 +40,15 @@ class AppointmentsDataSource {
             // We are already fetching so don't refetch
             return
             
+        }
+    }
+    
+    func removeAppointmentWith(id: String) {
+        switch fetchState {
+        case .uninitiated, .fetching, .error:
+            print("Attempted to remove appointment when state wasn't fetched")
+        case .fetched(let appointments):
+            fetchState =  .fetched(appointments:appointments.filter{ $0.id != id })
         }
     }
     

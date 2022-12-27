@@ -95,6 +95,6 @@ extension AppointmentsViewController: UITableViewDelegate {
 
 extension AppointmentsViewController: AppointmentCellListener {
     func removeAppointmentWith(id: String) {
-        latestAppointments = latestAppointments.filter{ $0.id != id }
+        dataSource.removeAppointmentWith(id: id)
     }
 }
