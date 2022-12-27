@@ -231,20 +231,14 @@ class AppointmentTableViewCell: UITableViewCell {
             
             removeStackviewSubviews(stackView: topHStack)
             topHStack.addArrangedSubview(dotView)
-            topHStack.addArrangedSubview(initiatedIconView)
-            topHStack.addArrangedSubview(nameVStack)
-            NSLayoutConstraint.activate([
-                detailsLabel.leadingAnchor.constraint(equalTo: nameVStack.leadingAnchor, constant: 0),
-                buttonStack.leadingAnchor.constraint(equalTo: nameVStack.leadingAnchor, constant: 0),
-                divider.leadingAnchor.constraint(equalTo: nameVStack.leadingAnchor, constant: 0),
-                
-            ])
             
+
             removeStackviewSubviews(stackView: buttonStack)
             if case .initiated = appointment.status {
                 dotView.backgroundColor = green
                 buttonStack.addArrangedSubview(joinButton)
-                
+                topHStack.addArrangedSubview(initiatedIconView)
+
                 statusLabel.text = "Starting soon"
                 statusLabel.textColor = green
                 
@@ -254,7 +248,8 @@ class AppointmentTableViewCell: UITableViewCell {
                 dotView.backgroundColor = blue
                 buttonStack.addArrangedSubview(acceptButton)
                 buttonStack.addArrangedSubview(declineButton)
-                
+                topHStack.addArrangedSubview(requestedIconView)
+
                 statusLabel.text = "Request to book"
                 statusLabel.textColor = blue
                 
@@ -264,6 +259,14 @@ class AppointmentTableViewCell: UITableViewCell {
                 detailsLabel.attributedText = details
                 
             }
+            topHStack.addArrangedSubview(nameVStack)
+            NSLayoutConstraint.activate([
+                detailsLabel.leadingAnchor.constraint(equalTo: nameVStack.leadingAnchor, constant: 0),
+                buttonStack.leadingAnchor.constraint(equalTo: nameVStack.leadingAnchor, constant: 0),
+                divider.leadingAnchor.constraint(equalTo: nameVStack.leadingAnchor, constant: 0),
+                
+            ])
+            
         case .completed, .active:
             
             removeStackviewSubviews(stackView: nameVStack)
